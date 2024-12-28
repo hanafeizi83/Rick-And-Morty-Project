@@ -12,7 +12,10 @@
     background-color: var(--slate-700);
     padding: 1rem;
     border-radius: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    position: fixed;
+    width: 96.5%;
+    top: .8rem;
   }
   
   .navbar__logo {
@@ -52,6 +55,7 @@
     justify-content: space-between;
     width: 100%;
     gap: 2rem;
+    margin-top: 4.3rem;
   }
   
   .characters-list {
