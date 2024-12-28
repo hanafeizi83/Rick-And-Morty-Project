@@ -1,10 +1,15 @@
-import { EyeIcon } from '@heroicons/react/24/outline'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import React from 'react'
-function CharacterList({ characters }) {
+function CharacterList({ characters, selectId, onSelect }) {
     return (
         <div className="characters-list">
             {
-                characters.map(character => <Character character={character} key={character.id}/>)
+                characters.map(character => <Character
+                    character={character}
+                    key={character.id}
+                    selectId={selectId}
+                    onSelect={onSelect}
+                />)
             }
 
         </div>
@@ -13,7 +18,7 @@ function CharacterList({ characters }) {
 
 export default CharacterList
 
-function Character({ character }) {
+function Character({ character, selectId, onSelect }) {
     return < div className='list__item' key={character.id}>
         <img src={character.image} alt={character.name} />
         <h3 className='name'>
@@ -25,8 +30,8 @@ function Character({ character }) {
             <span> {character.status}</span>
             <span> - {character.species}</span>
         </div>
-        <button className='icon red'>
-            <EyeIcon />
+        <button className='icon red' onClick={() => { onSelect(character.id) }}>
+            {selectId === character.id ? <EyeSlashIcon /> : <EyeIcon />}
         </button>
     </div >
 }

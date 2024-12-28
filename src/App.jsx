@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast'
 function App() {
   const [characters, setCharacters] = useState([])
   const [query, setQuery] = useState('')
+  const [selectId, setSelectId] = useState(null)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -22,6 +23,9 @@ function App() {
     fetchData()
   }, [query])
 
+  const handelSelectId = (id) => {
+    setSelectId((prevId) => prevId === id ? null : id)
+  }
   return (
     <>
       <Toaster />
@@ -31,8 +35,12 @@ function App() {
         numOfCharacter={characters.length}
       />
       <div className="main">
-        <CharacterList characters={characters} />
-        <ChatacterDetail />
+        <CharacterList
+          characters={characters}
+          selectId={selectId}
+          onSelect={handelSelectId}
+        />
+        <ChatacterDetail selectId={selectId} />
       </div>
     </>
   )
